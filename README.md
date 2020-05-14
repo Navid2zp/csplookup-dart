@@ -6,24 +6,23 @@ Client package for CSP Lookup API.
 
 ```
 dependencies:
-  csplookup: ^0.9.0
+  csplookup: ^0.9.3
 ```
-
 
 ### Usage
 
 ```dart
-import 'package:csplookup/csplookup.dart' as csplookup
+import 'package:csplookup/csplookup.dart' as csplookup;
 
-var client = new csplookup.LookupClient(apiKey: 'YOUR_API_KEY');
+var client = csplookup.LookupClient(apiKey: 'YOUR_API_KEY');
 client.ipLookup('1.1.1.1').then((response) => handleResponse(response));
 
 
-void handleResponse(LookupResponse response) {
+void handleResponse(csplookup.LookupResponse response) {
 	// call checkAPIError() to check for API errors (Limit reached, Invalid key, etc.)
 	try {
 		response.checkAPIError();
-	} on InvalidKeyException catch(e) {
+	} on csplookup.InvalidKeyException {
 		print('api key is not valid');
 		return;
 		// All exceptions are avilable in exceptions file
@@ -35,7 +34,7 @@ void handleResponse(LookupResponse response) {
 	var result = response.getResult();
 	print(result);
 	// Instance of LookupResult
-	print(result.country.country.isoCode)
+	print(result.country.isoCode);
 	// Country iso code
 }
 ```

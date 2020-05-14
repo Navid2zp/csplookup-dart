@@ -14,14 +14,13 @@ class LookupResponse {
     status = json['Status'];
     message = json['Message'];
     errorCode = json['ErrorCode'];
-    result = json['Result'] != null
-        ? new LookupResult.fromJson(json['Result'])
-        : null;
+    result =
+        json['Result'] != null ? LookupResult.fromJson(json['Result']) : null;
     ip = json['ip'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['Status'] = this.status;
     data['Message'] = this.message;
     data['ErrorCode'] = this.errorCode;
@@ -52,7 +51,6 @@ class LookupResponse {
         throw MaxLimitReachedException;
       case "NO_IP_PROVIDED":
         throw NoIpProvidedException;
-		break;
       case "INVALID_IP":
         throw InvalidIpException;
       case "INVALID_KEY":
@@ -110,33 +108,32 @@ class LookupResult {
       this.traits});
 
   LookupResult.fromJson(Map<String, dynamic> json) {
-    city = json['City'] != null ? new City.fromJson(json['City']) : null;
+    city = json['City'] != null ? City.fromJson(json['City']) : null;
     continent = json['Continent'] != null
-        ? new Continent.fromJson(json['Continent'])
+        ? Continent.fromJson(json['Continent'])
         : null;
     country =
-        json['Country'] != null ? new Country.fromJson(json['Country']) : null;
-    location = json['Location'] != null
-        ? new Location.fromJson(json['Location'])
-        : null;
-    postal =
-        json['Postal'] != null ? new Postal.fromJson(json['Postal']) : null;
+        json['Country'] != null ? Country.fromJson(json['Country']) : null;
+    location =
+        json['Location'] != null ? Location.fromJson(json['Location']) : null;
+    postal = json['Postal'] != null ? Postal.fromJson(json['Postal']) : null;
     registeredCountry = json['RegisteredCountry'] != null
-        ? new Country.fromJson(json['RegisteredCountry'])
+        ? Country.fromJson(json['RegisteredCountry'])
         : null;
     representedCountry = json['RepresentedCountry'] != null
-        ? new RepresentedCountry.fromJson(json['RepresentedCountry'])
+        ? RepresentedCountry.fromJson(json['RepresentedCountry'])
         : null;
 
-    subdivisions = json['Subdivisions'] != null ? json['Subdivisions']
-        .map((subdivision) => Subdivision.fromJson(subdivision))
-        .toList() : null;
-    traits =
-        json['Traits'] != null ? new Traits.fromJson(json['Traits']) : null;
+    subdivisions = json['Subdivisions'] != null
+        ? json['Subdivisions']
+            .map((subdivision) => Subdivision.fromJson(subdivision))
+            .toList()
+        : null;
+    traits = json['Traits'] != null ? Traits.fromJson(json['Traits']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.city != null) {
       data['City'] = this.city.toJson();
     }
@@ -159,8 +156,11 @@ class LookupResult {
       data['RepresentedCountry'] = this.representedCountry.toJson();
     }
     if (data['Subdivisions'] != null) {
-		data['Subdivisions'] = this.subdivisions.map((subdivisions) => subdivisions.toJson()).toList();
-	}
+      data['Subdivisions'] = this
+          .subdivisions
+          .map((subdivisions) => subdivisions.toJson())
+          .toList();
+    }
     if (this.traits != null) {
       data['Traits'] = this.traits.toJson();
     }
@@ -180,7 +180,7 @@ class City {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['GeoNameID'] = this.geoNameID;
     data['Names'] = this.names;
     return data;
@@ -197,11 +197,12 @@ class Continent {
   Continent.fromJson(Map<String, dynamic> json) {
     code = json['Code'];
     geoNameID = json['GeoNameID'];
-    names = json['Names'] != null ? Map<String,String>.from(json['Names']) : null;
+    names =
+        json['Names'] != null ? Map<String, String>.from(json['Names']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['Code'] = this.code;
     data['GeoNameID'] = this.geoNameID;
     data["Names"] = this.names;
@@ -221,11 +222,12 @@ class Country {
     geoNameID = json['GeoNameID'];
     isInEuropeanUnion = json['IsInEuropeanUnion'];
     isoCode = json['IsoCode'];
-    names = json['Names'] != null ? Map<String,String>.from(json['Names']) : null;
+    names =
+        json['Names'] != null ? Map<String, String>.from(json['Names']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['GeoNameID'] = this.geoNameID;
     data['IsInEuropeanUnion'] = this.isInEuropeanUnion;
     data['IsoCode'] = this.isoCode;
@@ -257,7 +259,7 @@ class Location {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['AccuracyRadius'] = this.accuracyRadius;
     data['Latitude'] = this.latitude;
     data['Longitude'] = this.longitude;
@@ -277,7 +279,7 @@ class Postal {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['Code'] = this.code;
     return data;
   }
@@ -301,12 +303,13 @@ class RepresentedCountry {
     geoNameID = json['GeoNameID'];
     isInEuropeanUnion = json['IsInEuropeanUnion'];
     isoCode = json['IsoCode'];
-    names = json['Names'] != null ? Map<String,String>.from(json['Names']) : null;
+    names =
+        json['Names'] != null ? Map<String, String>.from(json['Names']) : null;
     type = json['Type'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['GeoNameID'] = this.geoNameID;
     data['IsInEuropeanUnion'] = this.isInEuropeanUnion;
     data['IsoCode'] = this.isoCode;
@@ -328,7 +331,7 @@ class Traits {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['IsAnonymousProxy'] = this.isAnonymousProxy;
     data['IsSatelliteProvider'] = this.isSatelliteProvider;
     return data;
@@ -345,11 +348,12 @@ class Subdivision {
   Subdivision.fromJson(Map<String, dynamic> json) {
     geoNameID = json['GeoNameID'];
     isoCode = json['IsoCode'];
-    names = json['Names'] != null ? Map<String,String>.from(json['Names']) : null;
+    names =
+        json['Names'] != null ? Map<String, String>.from(json['Names']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['GeoNameID'] = this.geoNameID;
     data['IsoCode'] = this.isoCode;
     data['Names'] = this.names;

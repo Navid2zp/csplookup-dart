@@ -21,11 +21,15 @@ class LookupClient {
   }
 
   Future<LookupResponse> ipLookup(String ip) async {
-    final String url = (this._https ? 'https://' : 'http://') + API_BASE_URL + API_IP_LOOKUP_ENDPOINT + ip;
+    final String url = (this._https ? 'https://' : 'http://') +
+        API_BASE_URL +
+        API_IP_LOOKUP_ENDPOINT +
+        ip;
     Map<String, String> headers = {'apiKey': this.apiKey};
-    Response response =
-        await get(url, headers: headers).catchError((error) => throw error).timeout(this._timeout);
+    Response response = await get(url, headers: headers)
+        .catchError((error) => throw error)
+        .timeout(this._timeout);
 
-    return new LookupResponse.fromJson(json.decode(response.body));
+    return LookupResponse.fromJson(json.decode(response.body));
   }
 }
