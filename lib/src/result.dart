@@ -126,7 +126,7 @@ class LookupResult {
 
     subdivisions = json['Subdivisions'] != null
         ? json['Subdivisions']
-            .map((subdivision) => Subdivision.fromJson(subdivision))
+            .map<Subdivision>((subdivision) => Subdivision.fromJson(subdivision))
             .toList()
         : null;
     traits = json['Traits'] != null ? Traits.fromJson(json['Traits']) : null;
@@ -176,7 +176,8 @@ class City {
 
   City.fromJson(Map<String, dynamic> json) {
     geoNameID = json['GeoNameID'];
-    names = json['Names'];
+    names =
+        json['Names'] != null ? Map<String, String>.from(json['Names']) : null;
   }
 
   Map<String, dynamic> toJson() {

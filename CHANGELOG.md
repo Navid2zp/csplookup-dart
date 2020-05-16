@@ -1,3 +1,8 @@
+## 0.9.6
+
+* Fixed a bug while parsing json for Subdivisions.
+
+
 ## 0.9.5
 
 * Updated README.
