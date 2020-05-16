@@ -6,7 +6,7 @@ Client package for CSP Lookup API.
 
 ```
 dependencies:
-  csplookup: ^0.9.3
+  csplookup: ^0.9.5
 ```
 
 ### Usage
